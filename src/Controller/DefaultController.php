@@ -11,11 +11,11 @@ class DefaultController extends AbstractController
 {
 
     /**
-     * @Route("/")
+     * @Route("/", name="homepage")
      */
     public function homepage()
     {
-        return new Response('This is some sample text for a test.');
+        return $this->render('question/homepage.html.twig');
     }
 
     /**
@@ -29,6 +29,9 @@ class DefaultController extends AbstractController
             'Honestly, I like furry shoes better than MY cat',
             'Maybe... try saying the spell backwards?',
         ];
+
+        dump($slug, $this);
+
         return $this->render('question/show.html.twig', [
             'question' => ucwords(str_replace('-', ' ', $slug)),
             'answers' => $answers,
